@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <title>{{book.title}}</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message|safe}}</p>
+        {% endfor %}
+    {% endif %}
+    <div>
+        <a href="/books">Home</a>&nbsp;&nbsp;
+        <a href="/logout">Logout</a>
+    </div>
+    <h3>{{book.title}}</h3>
+    Author: {{book.author.name}}
+    <div>
+        {% for review in book.review_set.all %}
+        <p>
+            Rating: 
+            {% for i in "x"|rjust:review.rating %}
+            <img src="{% static 'belt_review/img/star.png' %}" style="width: 25px; margin-bottom: -8px;">
+            {% endfor %}
+            <br>
+            <a href="/users/{{review.users.first.id}}">{{review.users.first.alias}}</a> says: {{review.content}}<br>
+            <i>Posted on {{review.created_at}}</i>
+            <br>
+        </p>
+            {% if review.users.all.first.id == request.session.id %}
+                <a href="/delReview/{{book.id}}/{{review.id}}">Delete this Review</a>
+            {% endif %} 
+        {% endfor %}
+    </div>
+    <div>
+        <h3>Add a Review:</h3>
+        <form action="/review" method="POST">
+            {% csrf_token %}
+            <input type="hidden" value="{{request.session.id}}" name="user_id">
+            <input type="hidden" value="{{book.id}}" name="book_id">
+            <strong>Rating:</strong><select name="rating">
+                <option value="none">[-]</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select><br>
+            <textarea name="review"></textarea>
+            <button type="submit" value="submit" name="submit">Submit Review</button>
+        </form>
+    </div>
+</body>
+
+</html>

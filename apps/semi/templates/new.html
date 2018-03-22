@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New User</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users_app/css/bootstrap.min.css' %}">
+  </head>
+  <body>
+    <h1 class="text-center text-uppercase">Add a new user</h1>
+    <form class="form-horizontal" action="/users/create" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="name">Name:</label>
+        <div class="col-xs-4 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input class="form-control" type="text" name="name" placeholder="name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Email:</label>
+        <div class="col-xs-4 input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <input class="form-control" type="text" name="email" placeholder="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-6">
+          <input type="submit" class="btn btn-default" value="Create">
+        </div>
+      </div>
+    </form>
+    <div class="col-sm-offset-5 col-sm-6">
+      <a href="/users"><button>Go Back</button></a>
+    </div>
+  </body>
+</html>

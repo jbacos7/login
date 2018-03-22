@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Checkout</title>
+    <style type="text/css">
+    #wrapper {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Thank you for your business!</h1>
+      We charged your credit card for ${{ request.session.charge }}.<br>
+      You have ordered {{ request.session.item_count }} items so far and spent ${{ request.session.total_charge }} with Amadon.com!<br>
+      <a href="/"><button>Go Back</button></a><br>
+      <a href="/reset"><button>Reset Counts</button></a>
+    </div>
+  </body>
+</html>

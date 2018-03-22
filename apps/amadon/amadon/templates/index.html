@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Amadon Store</title>
+    <style type="text/css">
+      #wrapper {
+        margin: 0 auto;
+        width: 80%;
+        text-align: center;
+      }
+      table {
+        margin: 0 auto;
+        width: 60%;
+        min-width: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Amadon Store!</h1>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+        <tr><form action="/process" method="post">
+          {% csrf_token %}
+          <td><input type="hidden" name="product_id" value="1">IPHONE</td>
+          <td>$699.99</td>
+          <td>
+            <select name='quantity'>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </td>
+          <td><input type="submit" value="Buy!"></td>
+        </form></tr>
+        <tr><form action="/process" method="post">
+          {% csrf_token %}
+          <td><input type="hidden" name="product_id" value="2">ROLEX</td>
+          <td>$13399.99</td>
+          <td>
+            <select name='quantity'>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </td>
+          <td><input type="submit" value="Buy!"></td>
+        </form></tr>
+        <tr><form action="/process" method="post">
+          {% csrf_token %}
+          <td><input type="hidden" name="product_id" value="3">APPLE WATCH 4</td>
+          <td>$359.99</td>
+          <td>
+            <select name='quantity'>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </td>
+          <td><input type="submit" value="Buy!"></td>
+        </form></tr>
+        <tr><form action="/process" method="post">
+          {% csrf_token %}
+          <td><input type="hidden" name="product_id" value="4">CRACKING YOUR CODING INTERVIEW</td>
+          <td>$32.99</td>
+          <td>
+            <select name='quantity'>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </td>
+          <td><input type="submit" value="Buy!"></td>
+        </form></tr>
+      </table>
+    </div>
+  </body>
+</html>

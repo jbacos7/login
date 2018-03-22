@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Survey Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'survey_form/css/style.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        {% if "submitted" in request.session %}
+        <div id="countmsg">
+            Thanks for submitting this form! You have submitted this form {{ request.session.count }} times now.
+        </div>
+        {% endif %}
+        <div id="container">
+            {% if "submitted" not in request.session %}
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your Name" autofocus>
+                <select name="location">
+                    <option value="seattle">Seattle</option>
+                    <option value="la">LA</option>
+                    <option value="sanjose">San Jose</option>
+                    <option value="dc">Washington D.C.</option>
+                    <option value="dallas">Dallas</option>
+                    <option value="chicago">Chicago</option>
+                    <option value="tulsa">Tulsa</option>
+                </select>
+                <select name="language">
+                    <option value="javascript">Javascript</option>
+                    <option value="python">Python</option>
+                    <option value="csharp">C#/.NET</option>
+                    <option value="java">Java</option>
+                    <option value="swift">iOS Swift</option>
+                </select>
+                <p>Optional Comments:</p>
+                <textarea name="comment" cols="30" rows="10"></textarea>
+                <div class="stage-right">
+                    <button type="submit" name="submit" value="submitted">Submit</button>
+                </div>
+            </form>
+            {% else %}
+                <div id="info">
+                    <h3>Submitted Information</h3>
+                    <table>
+                        <tr>
+                            <td>
+                                Name:
+                            </td>
+                            <td>
+                                {{ request.session.name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Dojo location:
+                            </td>
+                            <td>
+                                {{ request.session.location }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Favorite language:
+                            </td>
+                            <td>
+                                {{ request.session.language }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Comment:
+                            </td>
+                            <td>
+                                {{ request.session.comment }}
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="stage-right">
+                        <form action="/process" method="POST">
+                            {% csrf_token %}
+                            <button name="submit" value="goback">Go Back</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </body>
+</html>

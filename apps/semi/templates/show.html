@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User {{ user.id }}</title>
+  </head>
+  <body>
+    <h1>User {{ user.id }}</h1>
+    Name: {{ user.name }}<br>
+    Email: {{ user.email }}<br>
+    Created At: {{ user.created_at }}<br>
+    <a href="/users/{{ user.id }}/edit">Edit</a> | <a href="/users/{{ user.id }}/destroy">Delete</a><br>
+    <a href="/users">Go Back</a>
+  </body>
+</html>

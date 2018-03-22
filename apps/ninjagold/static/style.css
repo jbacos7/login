@@ -1,0 +1,27 @@
+#container{
+    margin: 0 auto;
+    width: 1021px;
+}
+
+form{
+    width: 250px;
+    height: 160px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid;
+    margin: 20px auto 10px 0;
+}
+
+#activities{
+    overflow-y: scroll;
+    height: 150px;
+    border: 1px solid;
+}
+
+.won{
+    color: #008800;
+}
+
+.lost{
+    color: #880000;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users New</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users_app/css/bootstrap.min.css' %}">
+  </head>
+  <body>
+    <h1 class="text-center text-uppercase">Users</h1>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% if users %}
+        {% for user in users %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.created_at }}</td>
+            <td><a href="/users/{{ user.id }}">Show</a> <a href="/users/{{ user.id }}/edit">Edit</a> <a href="/users/{{ user.id }}/destroy">Delete</a></td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+    </table>
+    <div class="text-center">
+      <a href="/users/new">Add a new user</a>
+    </div>
+  </body>
+</html>

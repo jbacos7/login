@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Session Words</title>
+    <style type="text/css">
+    span.red {
+      color: red;
+    }
+    span.green {
+      color: green;
+    }
+    span.blue {
+      color: blue;
+    }
+    span.big {
+      font-size: 20pt;
+    }
+    span.notbig {
+      font-size: 10pt;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Add a new word</h1>
+    <form action="/submit" method="post">
+      {% csrf_token %}
+      <input type="text" name="word" placeholder="enter a word"><br>
+      Choose color:<br>
+      <input type="radio" name="color" value="red">Red</input><br>
+      <input type="radio" name="color" value="green">Green</input><br>
+      <input type="radio" name="color" value="blue">Blue</input><br>
+      Font size:<br>
+      <input type="radio" name="big" value="big"> show in BIG fonts!<br>
+      <input type="radio" name="big" value="notbig"> show in normal fonts!<br>
+      <input type="submit" value="Add to Session">
+    </form>
+    <a href="/clear">Clear Session</a>
+    {% if request.session.list %}
+      {% for dict in request.session.list %}
+        <div><span class='{{ dict.color }} {{ dict.big }}'>{{ dict.word }}</span> - added {{ dict.added }}</div>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>
