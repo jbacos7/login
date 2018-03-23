@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #'apps.amigos',
+    'apps.travel',
+    'apps.amigos',
     'apps.review',
     'apps.login',
     'apps.courses',

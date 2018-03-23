@@ -20,11 +20,11 @@ from django.contrib import admin
 #     url(r'^',include('apps.first_app.urls'))
 # ]
 # urlpatterns = [
-#     url(r'^',include('apps.djangoapp.urls'))
+#     url(r'^',include('apps.second_app.urls'))
 # ]
 # urlpatterns = [
-#     url(r'^',include('apps.sessionwords.urls'))
+#     url(r'^',include('apps.login.urls'))
 # ]
 urlpatterns = [
-    url(r'^',include('apps.review.urls'))
+    url(r'^',include('apps.travel.urls'))
 ]

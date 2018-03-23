@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Travel Buddy</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="register">
+        <h1>Registration</h1>
+        <form class="reg_form" action="/checkuser" method="post">
+          {% csrf_token %}
+          <label for="">Full Name:</label><input type="text" name="name" value="">
+          <p><label for="">UserName/Email:</label><input type="text" name="email" value=""></p>
+          <p><label for="">Password:</label><input type="password" name="password" value=""></p>
+          <p><label for="">Confirm password:</label><input type="password" name="confirm_pswrd" value=""></p>
+          <p><input class="button" type="submit" name="register_btn" value="Register"></p>
+          <input type="hidden" name="form_type" value="reg">
+        </form>
+      </div>
+      <div class="login">
+        <h1>Login</h1>
+        <form class="log_form" action="/checkuser" method="post">
+          {% csrf_token %}
+          <label for="">Email:</label><input type="text" name="email" value="">
+          <p><label for="">Password:</label><input type="password" name="password" value=""></p>
+          <p><input class="button" type="submit" name="login_btn" value="Login"></p>
+          <input type="hidden" name="form_type" value="log">
+        </form>
+        {% if messages %}
+        {% for message in messages %}
+        <p class="errors">{{message}}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
