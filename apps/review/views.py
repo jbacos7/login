@@ -9,7 +9,7 @@ def index(request):
     # Book.objects.all().delete()
     # Author.objects.all().delete()
     # Review.objects.all().delete()
-    return render(request, 'login_registration/index.html')
+    return render(request, 'index.html')
 
 
 def register(request):
@@ -52,7 +52,7 @@ def books(request):
         'books': books,
         'reviews': reviews,
     }
-    return render(request, 'belt_review/index.html', context)
+    return render(request, 'index2.html', context)
 
 
 def booksAdd(request):
@@ -65,7 +65,7 @@ def booksAdd(request):
         'user': user,
         'authors': authors,
     }
-    return render(request, 'belt_review/booksAdd.html', context)
+    return render(request, 'booksadd.html', context)
 
 
 def addBook(request):
@@ -94,7 +94,7 @@ def booksView(request, id):
         'author': author,
         'Reviews': reviews,
     }
-    return render(request, 'belt_review/book.html', context)
+    return render(request, 'books.html', context)
 
 
 def userProfile(request, id):
@@ -111,7 +111,7 @@ def userProfile(request, id):
         'user': user,
         'books': commented['books'],
     }
-    return render(request, 'belt_review/user.html', context)
+    return render(request, 'user.html', context)
 
 
 def addReview(request):

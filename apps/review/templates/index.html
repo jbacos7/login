@@ -1,50 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {% load staticfiles %}
-        <title>Books Home</title>
+        <title>Login &amp; Registration</title>
         <meta charset="UTF-8">
     </head>
     <body>
         {% if messages %}
             {% for message in messages %}
-                <p>{{message|safe}}</p>
+                <p>{{message}}</p>
             {% endfor %}
         {% endif %}
-        <div>
-            <a href="/books/add">Add Book and Review</a>&nbsp;&nbsp;
-            <a href="/logout">Logout</a>
-        </div>
-        <h3>Welcome, {{user.alias}}!</h3>
-        <h3>Recent Book Reviews:</h3>
-        {% for book in books %}
-        <div>
-            <a href="/books/{{book.id}}">{{book.title}}</a><br>
-            {% if book.review_set.first.rating|length > 0 %}
-                Rating: 
-                {% for x in ""|ljust:book.review_set.first.rating %}
-                    <img src="{% static 'belt_review/img/star.png' %}" style="width: 25px; margin-bottom: -8px;">
-                {% endfor %}
-            {% for review in book.review_set.all %}
-                <p>
-                    <a href="/users/{{review.users.first.id}}">{{review.users.all.first.alias}}</a> says: {{review.content}}<br>
-                    <i>Posted on {{review.created_at}}</i>
-                </p>
-            {% endfor %}
-            {% else %}
-                <p style="margin-top: -2px;">No Reviews Yet! - <a href="/books/{{book.id}}">Leave One!</a></p>
-            {% endif %}
-        </div>
-        {% endfor %}
-        <div>
-            <h3>Other Books with Reviews:</h3>
-            <div>
-                {%for book in books %}
-                    {% if book.review_set.all|length > 0 %}
-                        <h4><a href="/books/{{book.id}}">{{book.title}}</a></h4>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
+        <h1>Register Here</h1>
+        <form action="/register" method="POST">
+        {% csrf_token %}
+            <input type="text" name="name" value="" placeholder="Enter your name.">
+            <input type="text" name="alias" value="" placeholder="Enter an alias.">
+            <input type="text" name="email" value="" placeholder="Enter your email address.">
+            <input type="password" name="password" value="" placeholder="Enter your password.">
+            <input type="password" name="passvalid" value="" placeholder="Retype your password">
+            <button type="submit" name="submit" value="register">Register</button>
+        </form>
+        <h1>Login Here</h1>
+        <form action="/login" method="POST">
+        {% csrf_token %}
+            <input type="text" name="email" value="" placeholder="Enter your email address.">
+            <input type="password" name="password" value="" placeholder="Enter your password.">
+            <button type="submit" name="submit" value="login">Login</button>
+        </form>
     </body>
 </html>
